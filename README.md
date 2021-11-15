@@ -28,6 +28,41 @@ seperti
 * **MVC** (Model-View-Controller)
 * **MVVM** (Model-View-ViewModel)
 
+### Library yang di pakai
+___
+* [Kotlin](https://kotlinlang.org/) Bahasa pemograman untuk pengembangan android.
+* [Dagger-Hil](https://dagger.dev/hilt/) Dependency injection.
+* [Coroutine](https://developer.android.com/kotlin/coroutines) Untuk Background Task secara Asynchronous.
+* [Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle) Komponen untuk merespon perubahan data ke UI.
+* [Retrofit](https://square.github.io/retrofit/) Library untuk memanggil data Api.
+* [Coinpaprike](https://coinpaprika.com/) Api crypto currency
 
-
-
+### Struktur Project
+___
+```bash
+com
+└───rcyono
+└───cryptoapp
+├───common
+├───data
+│   ├───remote
+│   │   ├───api
+│   │   └───dto
+│   │       ├───coin
+│   │       └───tickers
+│   └───repository
+├───di
+├───domain
+│   ├───model
+│   ├───repository
+│   └───usecase
+│       ├───getcoin
+│       └───getcoindetail
+└───presentation
+├───coindetail
+│   └───components
+├───coinlist
+│   └───components
+└───ui
+└───theme
+```
