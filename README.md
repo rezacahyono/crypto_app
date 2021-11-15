@@ -1,0 +1,33 @@
+# LEARN CLEAN ARCHITECTURE SAMPLE
+___
+
+## Apa itu clean architecture ?
+___
+Clean architecture adalah salah satu referensi arsitekture yang ditawarkan oleh Robert C.Martin(uncle bob).
+Pada dalam bukunya _uncle bob_ yang berjudl __Clean Code__ arsitektur ini lebih menekankan prinsip _*SOLID PRINCIPLE*_, terutama _Single Responbility Principle_.
+
+
+![image](https://cdn-images-1.medium.com/max/1200/1*B7LkQDyDqLN3rRSrNYkETA.jpeg)
+## Alur clean architecture
+___
+![image](https://rubygarage.s3.amazonaws.com/uploads/article_image/file/2060/Artboard_15587.png)
+### 1. Entitas
+Bisnis logic seluruh aplikasi yang merangkum bisnis logic umum dan berisi _data transfer object_ (**DTO**)
+ketika suatu eksternal berubah maka entitas paling kecil kemungkinannya untuk berubah.
+### 2. Use Case
+Bisa disebut juga interactor yang berfungsi untuk mengambil atau mengirim data ke **API**.
+Ini mempermudahkan membuat _Mocking Request_ ke api untuk keperluan _Unit Test_.
+### 3. Data
+Layer ini berfungsi untuk sebagi tempat mendefinisikan variasi _Data Model_ yang akan digunakan.
+Layer ini bisa menjadi tempat menyimpan dan merequest data dari **API** maupun **LOCAL**.
+### 4. Presentation
+Layer ini menjadi tempat mengelompokan class yang berfunsgi sebagai interaksi dengan _**UI**_.
+Biasanya berisi android UI (_Activity, Fragment, Views_), ViewModel dan tergantung pattern apa kalian pilih 
+seperti 
+* **MVP** (Model-View-Presenter)
+* **MVC** (Model-View-Controller)
+* **MVVM** (Model-View-ViewModel)
+
+
+
+
