@@ -15,7 +15,7 @@ ___
 Bisnis logic seluruh aplikasi yang merangkum bisnis logic umum dan berisi _data transfer object_ (**DTO**)
 ketika suatu eksternal berubah maka entitas paling kecil kemungkinannya untuk berubah.
 ### 2. Use Case
-Bisa disebut juga interactor yang berfungsi untuk mengambil atau mengirim data ke **API**.
+Bisa disebut juga interactor yang berfungsi untuk mengambil atau mengirim data ke **API** dan mengelola data sesuai kasus.
 Ini mempermudahkan membuat _Mocking Request_ ke api untuk keperluan _Unit Test_.
 ### 3. Data
 Layer ini berfungsi untuk sebagi tempat mendefinisikan variasi _Data Model_ yang akan digunakan.
@@ -40,29 +40,32 @@ ___
 ### Struktur Project
 ___
 ```bash
-com
-└───rcyono
-└───cryptoapp
-├───common
-├───data
-│   ├───remote
-│   │   ├───api
-│   │   └───dto
-│   │       ├───coin
-│   │       └───tickers
-│   └───repository
-├───di
-├───domain
-│   ├───model
-│   ├───repository
-│   └───usecase
-│       ├───getcoin
-│       └───getcoindetail
-└───presentation
-├───coindetail
-│   └───components
-├───coinlist
-│   └───components
-└───ui
-└───theme
+─com
+    └───rcyono
+        └───cryptoapp
+            ├───common
+            ├───data
+            │   ├───remote
+            │   │   ├───api
+            │   │   └───dto
+            │   │       ├───coin
+            │   │       └───tickers
+            │   └───repository
+            ├───di
+            ├───domain
+            │   ├───model
+            │   ├───navigation
+            │   │   └───destinantion
+            │   ├───repository
+            │   └───usecase
+            │       ├───getcoin
+            │       └───getcoindetail
+            └───presentation
+                ├───coindetail
+                │   └───components
+                ├───coinlist
+                │   └───components
+                ├───splash
+                └───ui
+                    └───theme
 ```
