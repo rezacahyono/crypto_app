@@ -13,6 +13,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rcyono.cryptoapp.data.remote.dto.coin.TeamMember
+import com.rcyono.cryptoapp.presentation.ui.theme.MediumGray
+import com.rcyono.cryptoapp.presentation.ui.theme.textTitleColor
 
 @Composable
 fun TeamListItem(
@@ -25,14 +27,16 @@ fun TeamListItem(
     ) {
         Text(
             text = teamMember.name,
-            style = MaterialTheme.typography.body1,
-            fontWeight = FontWeight.Bold
+            style = MaterialTheme.typography.subtitle2,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colors.textTitleColor
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = teamMember.position,
             style = MaterialTheme.typography.body2,
-            fontStyle = FontStyle.Italic
+            fontStyle = FontStyle.Italic,
+            color = MediumGray
         )
     }
 }

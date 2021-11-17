@@ -8,35 +8,28 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rcyono.cryptoapp.presentation.ui.theme.ColorPrimary
-import com.rcyono.cryptoapp.presentation.ui.theme.red
-import com.rcyono.cryptoapp.presentation.ui.theme.yellow
+import com.rcyono.cryptoapp.presentation.ui.theme.Solidgreen
+import com.rcyono.cryptoapp.presentation.ui.theme.Solidred
+import com.rcyono.cryptoapp.presentation.ui.theme.Solidyellow
 
 @Composable
 fun CoinTag(
     tag: String
 ) {
     val value = (1..3).random()
-    var color: Color = yellow
+    var color = Solidyellow
     when (value) {
-        1 -> {
-            color = yellow
-        }
-        2 -> {
-            color = red
-        }
-        3 -> {
-            color = ColorPrimary
-        }
+        1 -> color = Solidred
+        2 -> color = Solidgreen
+        3 -> color = Solidyellow
     }
     Box(
         modifier = Modifier
             .border(
-                width = 1.dp,
+                width = 1.5.dp,
                 color = color,
                 shape = RoundedCornerShape(100.dp)
             )
@@ -46,7 +39,7 @@ fun CoinTag(
             text = tag,
             color = color,
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.body2
+            style = MaterialTheme.typography.subtitle2
 
         )
     }

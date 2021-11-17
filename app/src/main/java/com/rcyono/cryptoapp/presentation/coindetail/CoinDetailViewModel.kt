@@ -25,7 +25,6 @@ class CoinDetailViewModel @Inject constructor(
     init {
         savedStateHandle.get<String>(PARAM_COIN_ID)?.let { coinId ->
             getCoinDetail(coinId = coinId)
-//            getCoinTickers(coinId = coinId)
         }
     }
 
@@ -49,23 +48,4 @@ class CoinDetailViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-//    private fun getCoinTickers(coinId: String) {
-//        getCoinTickersUseCase(coinId = coinId).onEach { result ->
-//            when (result) {
-//                is Resource.Success -> {
-//                    _state.value = CoinDetailState(
-//                        coinTickers = result.data
-//                    )
-//                }
-//                is Resource.Error -> {
-//                    _state.value = CoinDetailState(
-//                        error = result.message ?: "An unexpected error occured"
-//                    )
-//                }
-//                is Resource.Loading -> {
-//                    _state.value = CoinDetailState(isLoading = true)
-//                }
-//            }
-//        }.launchIn(viewModelScope)
-//    }
 }

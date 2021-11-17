@@ -1,49 +1,81 @@
 package com.rcyono.cryptoapp.presentation.coinlist.components
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.Preview
 import com.rcyono.cryptoapp.domain.model.Coin
-import com.rcyono.cryptoapp.presentation.ui.theme.ColorPrimary
-import com.rcyono.cryptoapp.presentation.ui.theme.red
+import com.rcyono.cryptoapp.presentation.ui.theme.*
 
+@ExperimentalMaterialApi
 @Composable
 fun CoinListItem(
     coin: Coin,
-    onItemClick: (Coin) -> Unit
+    onItemClick: (String) -> Unit
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onItemClick(coin) }
-            .padding(16.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+    Surface(
+        modifier = Modifier.fillMaxWidth(),
+        color = MaterialTheme.colors.CoinItemBackground,
+        shape = RectangleShape,
+        elevation = COIN_ITEM_ELEVATION,
+        onClick = { onItemClick(coin.id) }
+
     ) {
-        Text(
-            text = "${coin.rank}. ${coin.name} ${coin.symbol}",
-            style = MaterialTheme.typography.body1,
-            fontWeight = FontWeight.Bold,
-            overflow = TextOverflow.Ellipsis
-        )
-        Text(
-            text = if (coin.isActive) "active" else "inactive",
-            color = if (coin.isActive) ColorPrimary else red,
-            fontStyle = FontStyle.Italic,
-            textAlign = TextAlign.End,
-            style = MaterialTheme.typography.body2,
-            modifier = Modifier.align(Alignment.CenterVertically)
-        )
+        Column(
+            modifier = Modifier
+                .padding(
+                    vertical = LARGEST_PADDING,
+                    horizontal = LARGE_PADDING
+                )
+                .fillMaxWidth()
+        ) {
+            Row {
+                Text(
+                    modifier = Modifier.weight(7f),
+                    text = "${coin.rank}. ${coin.name} ${coin.symbol}",
+                    style = MaterialTheme.typography.subtitle1,
+                    fontWeight = FontWeight.Bold,
+                    overflow = TextOverflow.Ellipsis,
+                    color = MaterialTheme.colors.textTitleColor
+                )
+                Text(
+                    modifier = Modifier.weight(2f),
+                    text = if (coin.isActive) "active" else "inactive",
+                    color = if (coin.isActive) Solidgreen else Solidred,
+                    fontStyle = FontStyle.Italic,
+                    textAlign = TextAlign.End,
+                    style = MaterialTheme.typography.subtitle2,
+                )
+            }
+        }
     }
+}
+
+@ExperimentalMaterialApi
+@Preview
+@Composable
+fun CoinListItemPreview() {
+    CoinListItem(
+        coin = Coin(
+            id = "BTC",
+            isActive = true,
+            name = "Bitcoin",
+            rank = 1,
+            symbol = "BTC"
+        ),
+        onItemClick = {}
+    )
+
 }

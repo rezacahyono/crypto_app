@@ -1,6 +1,6 @@
 package com.rcyono.cryptoapp.presentation.coindetail
 
-import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -14,29 +14,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.flowlayout.FlowRow
 import com.rcyono.cryptoapp.presentation.coindetail.components.CoinTag
 import com.rcyono.cryptoapp.presentation.coindetail.components.CoinUsd
 import com.rcyono.cryptoapp.presentation.coindetail.components.TeamListItem
-import com.rcyono.cryptoapp.presentation.ui.theme.ColorPrimary
-import com.rcyono.cryptoapp.presentation.ui.theme.red
+import com.rcyono.cryptoapp.presentation.ui.theme.*
 
 @Composable
 fun CoinDetailScreen(
     viewModel: CoinDetailViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
-    state.coinDetail?.let { coin ->
-        Log.d("TAG", "CoinDetailScreen: ${coin.coinId}")
-    }
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(MaterialTheme.colors.CoinItemBackground)
+    ) {
         state.coinDetail?.let { coin ->
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(20.dp)
+                contentPadding = PaddingValues(LARGEST_PADDING)
             ) {
                 item {
                     Row(
@@ -44,14 +42,15 @@ fun CoinDetailScreen(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(
-                            text = "${coin.rank}. ${coin.name} (${coin.symbol})",
+                            text = "${coin.name} (${coin.symbol})",
                             style = MaterialTheme.typography.h5,
                             fontWeight = FontWeight.Bold,
-                            modifier = Modifier.weight(8f)
+                            modifier = Modifier.weight(8f),
+                            color = MaterialTheme.colors.textTitleColor
                         )
                         Text(
                             text = if (coin.isActive) "active" else "inactive",
-                            color = if (coin.isActive) ColorPrimary else red,
+                            color = if (coin.isActive) Solidgreen else Solidred,
                             fontStyle = FontStyle.Italic,
                             textAlign = TextAlign.End,
                             modifier = Modifier
@@ -59,49 +58,53 @@ fun CoinDetailScreen(
                                 .weight(2f)
                         )
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(SPACER_LARGE_PADDING))
                     CoinUsd(usd = coin.quotes.uSD)
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(SPACER_LARGE_PADDING))
                     Text(
                         text = "Description",
                         style = MaterialTheme.typography.h5,
                         fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colors.textTitleColor
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(MEDIUM_PADDING))
                     Text(
                         text = coin.description,
-                        style = MaterialTheme.typography.body2
+                        style = MaterialTheme.typography.body2,
+                        color = MaterialTheme.colors.textTitleColor
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(SPACER_LARGE_PADDING))
                     Text(
                         text = "Tags",
                         style = MaterialTheme.typography.h5,
                         fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colors.textTitleColor
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(MEDIUM_PADDING))
                     FlowRow(
-                        mainAxisSpacing = 10.dp,
-                        crossAxisSpacing = 10.dp,
+                        mainAxisSpacing = LARGE_PADDING,
+                        crossAxisSpacing = LARGE_PADDING,
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         coin.tags?.forEach { tag ->
                             CoinTag(tag = tag)
                         }
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(SPACER_LARGE_PADDING))
                     Text(
                         text = "Team members",
                         style = MaterialTheme.typography.h5,
                         fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colors.textTitleColor
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(MEDIUM_PADDING))
                 }
                 items(coin.team) { teamMember ->
                     TeamListItem(
                         teamMember = teamMember,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(4.dp)
+                            .padding(TEAM_LIST_PADDING)
                     )
                     Divider()
                 }
@@ -114,7 +117,7 @@ fun CoinDetailScreen(
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 20.dp)
+                    .padding(horizontal = LARGEST_PADDING)
                     .align(Alignment.Center)
             )
         }
