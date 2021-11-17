@@ -6,8 +6,10 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.rcyono.cryptoapp.common.Constant.LIST_SCREEN
+import com.rcyono.cryptoapp.common.Constant.SPLASH_SCREEN
 import com.rcyono.cryptoapp.domain.navigation.destinantion.detailComposable
 import com.rcyono.cryptoapp.domain.navigation.destinantion.listComposable
+import com.rcyono.cryptoapp.domain.navigation.destinantion.splashComposable
 
 @ExperimentalMaterialApi
 @Composable
@@ -20,8 +22,9 @@ fun SetupNavigation(
 
     NavHost(
         navController = navController,
-        startDestination = LIST_SCREEN
+        startDestination = SPLASH_SCREEN
     ) {
+        splashComposable(screen.splash)
 
         listComposable(screen.list)
 
