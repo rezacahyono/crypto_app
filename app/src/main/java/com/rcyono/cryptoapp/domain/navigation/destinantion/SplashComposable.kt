@@ -7,9 +7,10 @@ import com.rcyono.cryptoapp.presentation.splash.SplashScreen
 
 fun NavGraphBuilder.splashComposable(
     navigateToListCoin: () -> Unit
-){
+) {
     composable(
-        route = SPLASH_SCREEN
+        route = SPLASH_SCREEN,
+
     ) {
         SplashScreen(navigateToListCoin = navigateToListCoin)
     }

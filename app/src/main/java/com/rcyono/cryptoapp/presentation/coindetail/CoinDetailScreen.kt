@@ -49,8 +49,8 @@ fun CoinDetailScreen(
                             color = MaterialTheme.colors.textTitleColor
                         )
                         Text(
-                            text = if (coin.isActive) "active" else "inactive",
-                            color = if (coin.isActive) Solidgreen else Solidred,
+                            text = if (coin.isActive == true) "active" else "inactive",
+                            color = if (coin.isActive == true) Solidgreen else Solidred,
                             fontStyle = FontStyle.Italic,
                             textAlign = TextAlign.End,
                             modifier = Modifier
